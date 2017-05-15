@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cadastro</title>
+		<link rel="stylesheet" href="style.css" type="text/css">
+
+		<meta charset="utf-8">
+		<script type="text/javascript">
+			function validar(){
+				var senha = formuser.senha.value;
+				var rep_senha = formuser.rep_senha.value;
+				var nome = formuser.nome.value;
+				var email = formuser.email.value;
+				var x=document.forms["formuser"]["email"].value;
+				var atpos=x.indexOf("@"); 
+				var dotpos=x.lastIndexOf(".");	
+				
+				if(nome==""){
+					alert("Preencha o campo nome");
+					formuser.nome.focus();
+					return false;
+				}
+				
+				if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){
+					alert("Não é um endereço de e-mail válido");
+					formuser.email.focus();
+					return false;
+				}
+
+				
+				if(senha == "" || senha.length <= 5){
+					alert('Preencha o campo senha com minimo 6 caracteres');
+					formuser.senha.focus();
+					return false;
+				}
+				
+				if(rep_senha == "" || rep_senha.length <= 5){
+					alert('Preencha o campo repetir senha com minimo 6 caracteres');
+					formuser.rep_senha.focus();
+					return false;
+				}
+				
+				if (senha != rep_senha) {
+					alert('Senhas diferentes');
+					formuser.senha.focus();
+					return false;
+				}
+				
+				form = document.forms[0];
+
+			if(form.acao.checked== false && form.aventura.checked== false && form.comedia.checked== false && form.drama.checked == false && form.suspense.checked == false && form.terror.checked== false){
+				alert("Informar pelo menos uma categoria de filmes!");
+				document.getElementById('acao').focus();
+				event.returnValue=false;return false;
+			}
+			
+			alert('Cadastro realizado com sucesso!');
+		}
+			
+			
+			
+				
+			
+		</script>
+	</head>
+	<body>	
+	<div class="container">
+		
+		<center><form name="formuser" action="#" method="POST">
+			
+			<label for="username">
+			<center><strong><img src="Clientes.png" width="20%" height="20%">&nbspCadastro</strong><br><br></center>
+			
+			*Nome: <br>
+			<input type="text" name="nome" required><br>
+			*E-mail: <br>
+			<input type="email" name="email" required><br>
+			*Senha: <br>
+			<input type="password" name="senha" required maxlength="10"><br>
+			*Repetir Senha: <br>
+			<input type="password" name="rep_senha" required maxlength="10"><br>
+			*Informe no mínimo uma categoria de filmes de sua preferência:<br>
+			
+			<input type="checkbox" name="categorias[]" id="acao" value="acao"/>Ação&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="checkbox" name="categorias[]" id="aventura" value="aventura" />Aventura<br>
+			<input type="checkbox" name="categorias[]" id="comedia" value="comedia">Comédia&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="checkbox" name="categorias[]" id="drama" value="drama"/>Drama<br>
+			<input type="checkbox" name="categorias[]" id="suspense" value="suspense"/>Suspense&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="checkbox" name="categorias[]" id="terror" value="terror"/>Terror
+			</label><br>
+
+			
+			<center><input type="submit" class="grey"
+			value="Cadastrar" class="grey"style="width: 100px; height: 30px;" onclick="return validar()"></input>
+		</form></center><br><br><br>
+		</div>
+		
+		
+	</body>
+</html>
